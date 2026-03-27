@@ -407,11 +407,11 @@ button:disabled:hover {
   }
 
   .list-player-cell {
-    width: auto;
+    width: 100%;
   }
 
   .list-player {
-    width: 160px;
+    width: 100%;
   }
 }
 
