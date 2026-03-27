@@ -297,6 +297,19 @@ button:disabled:hover {
   margin-right: 0.3rem;
 }
 
+.chunt-btn {
+  display: inline-block;
+  color: var(--fg);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chunt-btn:hover {
+  background: var(--fg);
+  color: var(--bg);
+  text-decoration: none;
+}
+
 /* List view */
 .results-list {
   width: 100%;
