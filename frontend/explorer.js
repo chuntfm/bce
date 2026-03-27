@@ -417,7 +417,7 @@ function renderListView(tralbums) {
 
   const thead = document.createElement('thead')
   thead.innerHTML =
-    '<tr><th></th><th>Title</th><th>Artist</th><th>Type</th><th></th></tr>'
+    '<tr><th></th><th class="list-text-col">Title</th><th class="list-text-col">Artist</th><th class="list-text-col">Type</th><th></th></tr>'
   table.appendChild(thead)
 
   const tbody = document.createElement('tbody')
@@ -436,6 +436,7 @@ function renderListView(tralbums) {
     tr.appendChild(tdPlayer)
 
     const tdTitle = document.createElement('td')
+    tdTitle.className = 'list-text-col'
     const titleLink = document.createElement('a')
     titleLink.href = t.item_url
     titleLink.target = '_blank'
@@ -445,10 +446,12 @@ function renderListView(tralbums) {
     tr.appendChild(tdTitle)
 
     const tdArtist = document.createElement('td')
+    tdArtist.className = 'list-text-col'
     tdArtist.textContent = t.band_name
     tr.appendChild(tdArtist)
 
     const tdType = document.createElement('td')
+    tdType.className = 'list-text-col'
     tdType.textContent = type
     tr.appendChild(tdType)
 

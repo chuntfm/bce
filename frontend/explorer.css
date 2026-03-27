@@ -400,6 +400,21 @@ button:disabled:hover {
   margin-bottom: 0.2rem;
 }
 
+/* Mobile: list view shows only player + explore */
+@media (max-width: 599px) {
+  .results-table .list-text-col {
+    display: none;
+  }
+
+  .list-player-cell {
+    width: auto;
+  }
+
+  .list-player {
+    width: 160px;
+  }
+}
+
 /* Desktop: side-by-side when there's room */
 @media (min-width: 600px) {
   .form-row {
