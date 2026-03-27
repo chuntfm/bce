@@ -2,7 +2,7 @@
 // All selection/filtering logic runs client-side.
 // The Worker endpoints are thin proxies to Bandcamp.
 
-const API_BASE = 'http://localhost:8787' // Change to Worker URL in production
+const API_BASE = '__API_BASE__' // Replaced at build time by GitHub Actions
 
 const WILDNESS_MAP = [18, 12, 9, 6, 4, 3, 2, 1]
 const FRESHNESS_MAP = [1024, 512, 256, 128, 64, 32, 16, 8]
