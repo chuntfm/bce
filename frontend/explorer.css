@@ -277,10 +277,24 @@ button:disabled:hover {
   color: var(--fg);
 }
 
+.card-actions {
+  display: flex;
+  gap: 0.3rem;
+}
+
 .explore-btn {
   font-size: 0.7rem;
   padding: 0.15rem 0.4rem;
   align-self: flex-start;
+  text-decoration: none;
+}
+
+.list-actions-cell {
+  white-space: nowrap;
+}
+
+.list-actions-cell .explore-btn {
+  margin-right: 0.3rem;
 }
 
 /* List view */

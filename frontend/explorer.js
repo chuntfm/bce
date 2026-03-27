@@ -398,6 +398,9 @@ function renderResults(tralbums) {
     info.appendChild(link)
     card.appendChild(info)
 
+    const actions = document.createElement('div')
+    actions.className = 'card-actions'
+
     const exploreBtn = document.createElement('button')
     exploreBtn.className = 'explore-btn'
     exploreBtn.textContent = 'Explore this'
@@ -405,7 +408,17 @@ function renderResults(tralbums) {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       explore(t.item_url)
     })
-    card.appendChild(exploreBtn)
+    actions.appendChild(exploreBtn)
+
+    const chuntBtn = document.createElement('a')
+    chuntBtn.href = 'https://chunt.org'
+    chuntBtn.target = '_blank'
+    chuntBtn.className = 'explore-btn chunt-btn'
+    chuntBtn.textContent = 'ChuntFM instead'
+    chuntBtn.title = 'Listen to ChuntFM instead'
+    actions.appendChild(chuntBtn)
+
+    card.appendChild(actions)
 
     resultsEl.appendChild(card)
   }
@@ -456,6 +469,7 @@ function renderListView(tralbums) {
     tr.appendChild(tdType)
 
     const tdAction = document.createElement('td')
+    tdAction.className = 'list-actions-cell'
     const exploreBtn = document.createElement('button')
     exploreBtn.className = 'explore-btn'
     exploreBtn.textContent = 'Explore'
@@ -464,6 +478,15 @@ function renderListView(tralbums) {
       explore(t.item_url)
     })
     tdAction.appendChild(exploreBtn)
+
+    const chuntBtn = document.createElement('a')
+    chuntBtn.href = 'https://chunt.org'
+    chuntBtn.target = '_blank'
+    chuntBtn.className = 'explore-btn chunt-btn'
+    chuntBtn.textContent = 'ChuntFM'
+    chuntBtn.title = 'Listen to ChuntFM instead'
+    tdAction.appendChild(chuntBtn)
+
     tr.appendChild(tdAction)
 
     tbody.appendChild(tr)
