@@ -279,6 +279,7 @@ button:disabled:hover {
 
 .card-actions {
   display: flex;
+  justify-content: space-between;
   gap: 0.3rem;
 }
 
