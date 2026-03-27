@@ -279,8 +279,16 @@ button:disabled:hover {
 
 .card-actions {
   display: flex;
-  justify-content: space-between;
   gap: 0.3rem;
+}
+
+.card-actions .explore-btn {
+  flex: 1;
+}
+
+.card-actions .chunt-btn {
+  flex: 1;
+  text-align: right;
 }
 
 .explore-btn {
