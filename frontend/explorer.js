@@ -80,18 +80,10 @@ function readUrlParams() {
 function updateUrlParams() {
   const params = new URLSearchParams()
   params.set('url', urlInput.value.trim())
-
-  const buyers = getRadioValue('buyers')
-  if (buyers !== DEFAULTS.buyers) params.set('buyers', buyers)
-
-  const picks = getRadioValue('picks')
-  if (picks !== DEFAULTS.picks) params.set('picks', picks)
-
-  const wildness = wildnessSlider.value
-  if (wildness !== DEFAULTS.wildness) params.set('wildness', wildness)
-
-  const freshness = freshnessSlider.value
-  if (freshness !== DEFAULTS.freshness) params.set('freshness', freshness)
+  params.set('buyers', getRadioValue('buyers'))
+  params.set('picks', getRadioValue('picks'))
+  params.set('wildness', wildnessSlider.value)
+  params.set('freshness', freshnessSlider.value)
 
   const newUrl = `${window.location.pathname}?${params.toString()}`
   history.replaceState(null, '', newUrl)
