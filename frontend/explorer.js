@@ -417,12 +417,23 @@ function renderListView(tralbums) {
 
   const thead = document.createElement('thead')
   thead.innerHTML =
-    '<tr><th>Title</th><th>Artist</th><th>Type</th><th></th></tr>'
+    '<tr><th></th><th>Title</th><th>Artist</th><th>Type</th><th></th></tr>'
   table.appendChild(thead)
 
   const tbody = document.createElement('tbody')
   for (const t of tralbums) {
+    const type = t.item_type === 'package' ? 'album' : t.item_type
     const tr = document.createElement('tr')
+
+    const tdPlayer = document.createElement('td')
+    tdPlayer.className = 'list-player-cell'
+    const iframe = document.createElement('iframe')
+    iframe.src = `https://bandcamp.com/EmbeddedPlayer/${type}=${t.tralbum_id}/size=small/bgcol=333333/linkcol=0f91ff/transparent=true/`
+    iframe.title = `${t.item_title} by ${t.band_name}`
+    iframe.className = 'list-player'
+    iframe.loading = 'lazy'
+    tdPlayer.appendChild(iframe)
+    tr.appendChild(tdPlayer)
 
     const tdTitle = document.createElement('td')
     const titleLink = document.createElement('a')
@@ -438,7 +449,7 @@ function renderListView(tralbums) {
     tr.appendChild(tdArtist)
 
     const tdType = document.createElement('td')
-    tdType.textContent = t.item_type === 'package' ? 'album' : t.item_type
+    tdType.textContent = type
     tr.appendChild(tdType)
 
     const tdAction = document.createElement('td')

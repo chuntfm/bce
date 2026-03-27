@@ -306,7 +306,7 @@ button:disabled:hover {
 }
 
 .results-table td {
-  padding: 0.35rem 0.5rem;
+  padding: 0.6rem 0.5rem;
   border-bottom: 1px solid #eee;
   vertical-align: middle;
 }
@@ -323,6 +323,19 @@ button:disabled:hover {
 .results-table .explore-btn {
   font-size: 0.65rem;
   padding: 0.1rem 0.4rem;
+}
+
+.list-player-cell {
+  width: 200px;
+  padding-top: 0.4rem !important;
+  padding-bottom: 0.4rem !important;
+}
+
+.list-player {
+  border: 0;
+  width: 200px;
+  height: 42px;
+  display: block;
 }
 
 /* Tag filter */
