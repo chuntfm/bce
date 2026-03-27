@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bandcamp Explorer</title>
+  <link rel="stylesheet" href="explorer.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Bandcamp Explorer</h1>
+
+    <div class="controls">
+      <div class="form-row">
+        <div class="form-group grow">
+          <label for="url-input">Bandcamp release URL</label>
+          <input type="text" id="url-input" value="https://tobagotracks.bandcamp.com/album/fantasias-for-lock-in">
+        </div>
+        <button id="submit-btn" type="button">Explore</button>
+      </div>
+
+      <div class="settings-columns">
+        <div class="settings-group">
+          <div class="settings-group-label">Buyers</div>
+          <div class="form-group">
+            <label>
+              Selection
+              <button type="button" class="tip-toggle" aria-label="Help" data-tip="Which buyers of the seed release to look at. Random picks any buyers. Recent picks people who bought it most recently.">?</button>
+            </label>
+            <div class="radio-group">
+              <label><input type="radio" name="buyers" value="random" checked> Random</label>
+              <label><input type="radio" name="buyers" value="recent"> Recent</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="wildness">
+              Wildness: <span id="wildness-val">5</span>
+              <button type="button" class="tip-toggle" aria-label="Help" data-tip="How many of those buyers to sample. Low = fewer buyers, more focused. High = more buyers, more diverse.">?</button>
+            </label>
+            <input type="range" id="wildness" min="1" max="8" value="5">
+            <div class="slider-label"><span>Focused</span><span>Wild</span></div>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <div class="settings-group-label">Picks</div>
+          <div class="form-group">
+            <label>
+              Mode
+              <button type="button" class="tip-toggle" aria-label="Help" data-tip="How to select releases from each buyer's collection. Random picks randomly. Recent picks their newest purchases. Top finds releases that appear across multiple buyers.">?</button>
+            </label>
+            <div class="radio-group">
+              <label><input type="radio" name="picks" value="random" checked> Random</label>
+              <label><input type="radio" name="picks" value="recent"> Recent</label>
+              <label><input type="radio" name="picks" value="top"> Top</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="freshness">
+              Freshness: <span id="freshness-val">5</span>
+              <button type="button" class="tip-toggle" aria-label="Help" data-tip="How deep into each buyer's purchase history to look. High = only recent purchases. Low = deeper history. Pick mode then selects from within this window.">?</button>
+            </label>
+            <input type="range" id="freshness" min="1" max="8" value="5">
+            <div class="slider-label"><span>Deep cuts</span><span>Recent</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="status"></div>
+
+    <div id="results-header" class="results-header"></div>
+    <div id="tag-filter-container"></div>
+    <div id="results" class="results-grid"></div>
+
+    <footer class="footer">
+      <p>This is a fork of the original <a href="https://bc-explorer.app/">Bandcamp Explorer</a> built by Ron. You can buy Ron a coffee <a href="https://buymeacoffee.com/bc.explorer">here</a>.</p>
+      <p>This app does not collect or store personal data.</p>
+    </footer>
+  </div>
+
+  <script src="explorer.js"></script>
+</body>
+</html>

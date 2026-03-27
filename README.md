@@ -1,7 +1,6 @@
 # Bandcamp Explorer
 
-A tool for exploring Bandcamp releases. 
+A fork of the original [Bandcamp Explorer](https://bc-explorer.app/) by [Ron](https://buymeacoffee.com/bc.explorer). Replaces the Streamlit backend and interface with Cloudflare Workers for the backend and static HTML/JS for the frontend.
 
-Try it out at: 🔗https://bc-explorer.app/
-
-![Screenshot](https://bc-explorer.app/static/media/social.png)
+- `worker/` -- Cloudflare Worker (Hono + TypeScript) that proxies Bandcamp endpoints
+- `frontend/` -- Static frontend (vanilla JS), deployed to GitHub Pages
