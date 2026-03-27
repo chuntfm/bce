@@ -37,6 +37,7 @@ let currentTralbums = []
 let currentTags = null
 let showInfo = true
 let tagFilterVisible = false
+let viewMode = 'grid' // 'grid' or 'list'
 
 // ---------------------------------------------------------------------------
 // URL params: read on load, update after explore
@@ -317,13 +318,21 @@ function renderResultsHeader(subtitleHtml) {
   const actions = document.createElement('div')
   actions.className = 'results-actions'
 
+  const viewBtn = document.createElement('button')
+  viewBtn.textContent = viewMode === 'grid' ? 'List view' : 'Grid view'
+  viewBtn.addEventListener('click', () => {
+    viewMode = viewMode === 'grid' ? 'list' : 'grid'
+    viewBtn.textContent = viewMode === 'grid' ? 'List view' : 'Grid view'
+    resultsEl.className = viewMode === 'grid' ? 'results-grid' : 'results-list'
+    renderResults(getVisibleTralbums())
+  })
+  actions.appendChild(viewBtn)
+
   const toggleBtn = document.createElement('button')
   toggleBtn.textContent = showInfo ? 'Hide info' : 'Show info'
   toggleBtn.addEventListener('click', () => {
     showInfo = !showInfo
     toggleBtn.textContent = showInfo ? 'Hide info' : 'Show info'
-    // Re-render to update link visibility
-
     document.querySelectorAll('.result-info').forEach((el) => {
       el.classList.toggle('hidden', !showInfo)
     })
@@ -347,8 +356,25 @@ function renderResultsHeader(subtitleHtml) {
 // Rendering
 // ---------------------------------------------------------------------------
 
+function getVisibleTralbums() {
+  if (!tagFilterVisible || !currentTags) return currentTralbums
+  const selectedChips = document.querySelectorAll('.tag-chip.selected')
+  if (selectedChips.length === 0) return currentTralbums
+  const selectedTags = new Set([...selectedChips].map((c) => c.dataset.tag))
+  return currentTralbums.filter((t) =>
+    (t.tags || []).some((tag) => selectedTags.has(tag))
+  )
+}
+
 function renderResults(tralbums) {
   resultsEl.innerHTML = ''
+  resultsEl.className = viewMode === 'grid' ? 'results-grid' : 'results-list'
+
+  if (viewMode === 'list') {
+    renderListView(tralbums)
+    return
+  }
+
   for (const t of tralbums) {
     const type = t.item_type === 'package' ? 'album' : t.item_type
     const card = document.createElement('div')
@@ -383,6 +409,53 @@ function renderResults(tralbums) {
 
     resultsEl.appendChild(card)
   }
+}
+
+function renderListView(tralbums) {
+  const table = document.createElement('table')
+  table.className = 'results-table'
+
+  const thead = document.createElement('thead')
+  thead.innerHTML =
+    '<tr><th>Title</th><th>Artist</th><th>Type</th><th></th></tr>'
+  table.appendChild(thead)
+
+  const tbody = document.createElement('tbody')
+  for (const t of tralbums) {
+    const tr = document.createElement('tr')
+
+    const tdTitle = document.createElement('td')
+    const titleLink = document.createElement('a')
+    titleLink.href = t.item_url
+    titleLink.target = '_blank'
+    titleLink.className = 'result-link'
+    titleLink.textContent = t.item_title
+    tdTitle.appendChild(titleLink)
+    tr.appendChild(tdTitle)
+
+    const tdArtist = document.createElement('td')
+    tdArtist.textContent = t.band_name
+    tr.appendChild(tdArtist)
+
+    const tdType = document.createElement('td')
+    tdType.textContent = t.item_type === 'package' ? 'album' : t.item_type
+    tr.appendChild(tdType)
+
+    const tdAction = document.createElement('td')
+    const exploreBtn = document.createElement('button')
+    exploreBtn.className = 'explore-btn'
+    exploreBtn.textContent = 'Explore'
+    exploreBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      explore(t.item_url)
+    })
+    tdAction.appendChild(exploreBtn)
+    tr.appendChild(tdAction)
+
+    tbody.appendChild(tr)
+  }
+  table.appendChild(tbody)
+  resultsEl.appendChild(table)
 }
 
 // ---------------------------------------------------------------------------
