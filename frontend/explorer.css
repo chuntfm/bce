@@ -1,7 +1,7 @@
 :root {
   --fg: #1a1a1a;
   --fg-secondary: #666;
-  --bg: #fefafa;
+  --bg: #f0f0f0;
   --accent: #1a3a6b;
   --border: #1a1a1a;
 }
@@ -14,10 +14,26 @@
 
 body {
   font-family: 'JetBrains Mono', 'Courier New', monospace;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   color: var(--fg);
   background: var(--bg);
   min-height: 100vh;
+}
+
+.top-bar {
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+.top-bar a {
+  color: var(--fg-secondary);
+  text-decoration: none;
+}
+
+.top-bar a:hover {
+  color: var(--fg);
+  text-decoration: underline;
 }
 
 .container {
